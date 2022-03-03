@@ -27,5 +27,9 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
           restore-keys: |
             ${{ runner.os }}-go-
-      - name: Test
+      - name: golangci-lint
+        uses: zendesk/golangci-lint-action@v2
+        with:
+          version: v1.42
+      - name: go ${{ matrix.go-version }} target ${{ matrix.task }}
         run: OPERATOR=scaling make ${{ matrix.task }}
