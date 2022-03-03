@@ -51,9 +51,11 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // ForResource gives generic access to a shared informer of the matching type
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
+	switch resource {
 	// Group=scaling.k8s.restdev.com, Version=v1alpha1
-	if v1alpha1.SchemeGroupVersion.WithResource("scheduledscalers") == resource {
+	case v1alpha1.SchemeGroupVersion.WithResource("scheduledscalers"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Scaling().V1alpha1().ScheduledScalers().Informer()}, nil
+
 	}
 
 	return nil, fmt.Errorf("no informer found for %v", resource)
