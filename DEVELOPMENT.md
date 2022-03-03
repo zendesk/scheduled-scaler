@@ -12,10 +12,11 @@ upstream        git@github.com:West-Coast-Devops/scheduled-scaler.git (push)
 Run the following commands to have git setup.
 
 1. `git remote add upstream git@github.com:West-Coast-Devops/scheduled-scaler.git`
-2. `git checkout -b ${your-branch-name-here} upstream/master`
-3. make your changes
-4. `git push origin ${your-branch-name-here}`
-5. submit a pull request
+2. `git fetch upstream`
+3. `git checkout -b ${your-branch-name-here} upstream/master`
+4. make your changes
+5. `git push origin ${your-branch-name-here}`
+6. submit a pull request
 
 ## Internal stuff
 
