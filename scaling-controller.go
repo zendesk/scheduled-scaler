@@ -375,10 +375,7 @@ func main() {
 		maxRetries int
 	)
 
-	err := flag.Set("logtostderr", "true")
-	if err != nil {
-		glog.Fatal(err)
-	}
+	flag.Set("logtostderr", "true")
 	flag.IntVar(&maxRetries, "max-retries", 1, "maximum retries before failing to update HPA or SS")
 	flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
 	flag.Parse()
@@ -388,14 +385,11 @@ func main() {
 		panic(err.Error())
 	}
 
-	// clientset, err := kubernetes.NewForConfig(config)
-	kubeClient, kubeErr := kubernetes.NewForConfig(config)
-	if kubeErr != nil {
-		glog.Fatal(kubeErr)
-	}
-	restdevClient, restdevErr := clientset.NewForConfig(config)
-	if restdevErr != nil {
-		glog.Fatal(restdevErr)
+	//clientset, err := kubernetes.NewForConfig(config)
+	kubeClient, err := kubernetes.NewForConfig(config)
+	restdevClient, err := clientset.NewForConfig(config)
+	if err != nil {
+		glog.Fatal(err)
 	}
 
 	factory := informers.NewSharedInformerFactory(restdevClient, time.Hour*24)

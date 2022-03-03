@@ -73,6 +73,7 @@ func (c *FakeScheduledScalers) List(opts v1.ListOptions) (result *v1alpha1.Sched
 func (c *FakeScheduledScalers) Watch(opts v1.ListOptions) (watch.Interface, error) {
 	return c.Fake.
 		InvokesWatch(testing.NewWatchAction(scheduledscalersResource, c.ns, opts))
+
 }
 
 // Create takes the representation of a scheduledScaler and creates it.  Returns the server's representation of the scheduledScaler, and an error, if there is any.
