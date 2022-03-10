@@ -8,7 +8,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/stretchr/testify v1.7.0
 	go.uber.org/multierr v1.5.0
-	golang.org/x/oauth2 v0.0.0-20220223155221-ee480838109b
+	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a
 	google.golang.org/api v0.71.0
 	k8s.io/api v0.0.0-20171207041203-11147472b7c9
 	k8s.io/apimachinery v0.0.0-20171207040834-180eddb345a5
