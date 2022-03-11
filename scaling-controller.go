@@ -375,7 +375,7 @@ func main() {
 		maxRetries int
 	)
 
-	flag.Set("logtostderr", "true")
+	flag.Set("logtostderr", "true") // nolint:errcheck
 	flag.IntVar(&maxRetries, "max-retries", 1, "maximum retries before failing to update HPA or SS")
 	flag.StringVar(&kubeconfig, "kubeconfig", "", "absolute path to the kubeconfig file")
 	flag.Parse()
@@ -385,8 +385,10 @@ func main() {
 		panic(err.Error())
 	}
 
-	//clientset, err := kubernetes.NewForConfig(config)
 	kubeClient, err := kubernetes.NewForConfig(config)
+	if err != nil {
+		glog.Fatal(err)
+	}
 	restdevClient, err := clientset.NewForConfig(config)
 	if err != nil {
 		glog.Fatal(err)

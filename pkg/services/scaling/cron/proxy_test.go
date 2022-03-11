@@ -1,14 +1,14 @@
 package cron
 
 import (
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestCronImpl_Create(t *testing.T) {
-
 	// Set up test expectation objects in outer testing scope.
 	losAngelesTZ, err := time.LoadLocation("America/Los_Angeles")
 	require.NoError(t, err)

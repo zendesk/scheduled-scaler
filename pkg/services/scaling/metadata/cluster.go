@@ -15,6 +15,9 @@ func GetClusterInfo() (projectId, zone string, err error) {
 	zoneReq, err := http.NewRequest("GET", "http://metadata.google.internal/computeMetadata/v1/instance/zone", nil)
 	zoneReq.Header.Add("Metadata-Flavor", "Google")
 	zoneResp, err := httpclient.Do(zoneReq)
+	if err != nil {
+		return projectId, zone, err
+	}
 	defer zoneResp.Body.Close()
 	defer projectIdResp.Body.Close()
 	projectIdBody, err := ioutil.ReadAll(projectIdResp.Body)
